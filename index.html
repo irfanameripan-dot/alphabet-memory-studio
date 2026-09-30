@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabet Memory Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">Aa</div>
+        <div>
+          <p class="eyebrow">LEARN · REMEMBER · PLAY</p>
+          <h1>Memory Studio</h1>
+        </div>
+      </div>
+
+      <button id="reset-progress-button" class="text-button" type="button">
+        Reset progress
+      </button>
+    </header>
+
+    <!-- HOME -->
+    <section id="home-screen" class="screen active">
+      <section class="hero-card">
+        <div>
+          <p class="eyebrow light-eyebrow">ALPHABET LEARNING GAME</p>
+          <h2>Learn one character at a time.</h2>
+          <p>
+            Use flashcards, mark characters you know, and test your memory
+            with a quick quiz.
+          </p>
+        </div>
+
+        <div class="hero-emoji">🧠</div>
+      </section>
+
+      <section class="section-heading">
+        <div>
+          <p class="eyebrow">CHOOSE A LEARNING SET</p>
+          <h2>My alphabets</h2>
+        </div>
+
+        <div class="overall-progress">
+          <span>Overall</span>
+          <strong id="overall-progress-text">0%</strong>
+        </div>
+      </section>
+
+      <section id="alphabet-list" class="alphabet-grid"></section>
+    </section>
+
+    <!-- LEARNING SCREEN -->
+    <section id="learning-screen" class="screen">
+      <button class="back-button" data-go-home type="button">
+        ← Back to alphabets
+      </button>
+
+      <div class="learning-header">
+        <div>
+          <p id="learning-eyebrow" class="eyebrow">ALPHABET</p>
+          <h2 id="learning-title">ABC</h2>
+        </div>
+
+        <div class="mode-switcher">
+          <button id="flashcard-mode-button" class="mode-button active" type="button">
+            Flashcards
+          </button>
+          <button id="quiz-mode-button" class="mode-button" type="button">
+            Quiz
+          </button>
+        </div>
+      </div>
+
+      <!-- Flashcard mode -->
+      <section id="flashcard-mode" class="learning-mode active">
+        <div class="progress-row">
+          <span id="card-position">1 / 26</span>
+
+          <div class="progress-track">
+            <div id="set-progress-bar" class="progress-fill"></div>
+          </div>
+
+          <span id="set-progress-text">0% known</span>
+        </div>
+
+        <article id="flashcard" class="flashcard">
+          <p class="flashcard-label">CHARACTER</p>
+          <div id="flashcard-character" class="flashcard-character">A</div>
+
+          <div class="flashcard-divider"></div>
+
+          <p class="flashcard-label">SOUND / NAME</p>
+          <p id="flashcard-answer" class="flashcard-answer">A</p>
+        </article>
+
+        <p id="flashcard-tip" class="card-tip">
+          Look at the character, say it aloud, then reveal the answer.
+        </p>
+
+        <div class="flashcard-actions">
+          <button id="previous-card-button" class="secondary-button" type="button">
+            ← Previous
+          </button>
+
+          <button id="reveal-card-button" class="primary-button" type="button">
+            Reveal answer
+          </button>
+
+          <button id="next-card-button" class="secondary-button" type="button">
+            Next →
+          </button>
+        </div>
+
+        <button id="know-card-button" class="know-button" type="button">
+          ✓ I know this character
+        </button>
+      </section>
+
+      <!-- Quiz mode -->
+      <section id="quiz-mode" class="learning-mode">
+        <div class="quiz-card">
+          <p class="eyebrow">MEMORY QUIZ</p>
+          <h3>Which character matches this sound?</h3>
+
+          <div id="quiz-prompt" class="quiz-prompt">A</div>
+
+          <p id="quiz-feedback" class="quiz-feedback">
+            Choose the correct character.
+          </p>
+
+          <div id="quiz-options" class="quiz-options"></div>
+
+          <div class="quiz-footer">
+            <span id="quiz-score">Correct answers: 0</span>
+            <button id="new-question-button" class="secondary-button" type="button">
+              New question
+            </button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
