@@ -99,6 +99,8 @@ const quizPrompt = document.getElementById("quiz-prompt");
 const quizFeedback = document.getElementById("quiz-feedback");
 const quizOptions = document.getElementById("quiz-options");
 const quizScore = document.getElementById("quiz-score");
+const playCardSoundButton = document.getElementById("play-card-sound-button");
+const playQuizSoundButton = document.getElementById("play-quiz-sound-button");
 
 function getProgress() {
   const savedProgress = localStorage.getItem(STORAGE_KEY);
@@ -312,6 +314,63 @@ function showQuizMode() {
 
   newQuizQuestion();
 }
+function getSpeechLanguage() {
+  if (currentSetId === "hiragana" || currentSetId === "katakana") {
+    return "ja-JP";
+  }
+
+  if (currentSetId === "jawi") {
+    return "ms-MY";
+  }
+
+  return "en-US";
+}
+
+function speakText(text) {
+  if (!("speechSynthesis" in window)) {
+    window.alert("Sound is not available in this browser.");
+    return;
+  }
+
+  // Stop any sound currently playing before starting the new one.
+  window.speechSynthesis.cancel();
+
+  const speech = new SpeechSynthesisUtterance(text);
+
+  // Japanese: ja-JP
+  // Jawi: ms-MY
+  // ABC: en-US
+  speech.lang = getSpeechLanguage();
+
+  // Slower speed makes the sound easier for children to follow.
+  speech.rate = 0.65;
+  speech.pitch = 1.15;
+  speech.volume = 1;
+
+  window.speechSynthesis.speak(speech);
+}
+
+function playCurrentCardSound() {
+  const set = getCurrentSet();
+  const [, answer] = set.characters[currentCardIndex];
+
+  speakText(answer);
+}
+
+function playCurrentQuizSound() {
+  const set = getCurrentSet();
+  const correctItem = set.characters.find(
+    ([character]) => character === quizAnswer
+  );
+
+  if (!correctItem) {
+    return;
+  }
+
+  const [, answer] = correctItem;
+
+  speakText(answer);
+}
 
 function randomItem(items) {
   return items[Math.floor(Math.random() * items.length)];
@@ -330,7 +389,7 @@ function newQuizQuestion() {
 
   quizAnswer = correctCharacter;
   quizPrompt.textContent = correctAnswer;
-  quizFeedback.textContent = "Choose the correct character.";
+  quizFeedback.textContent = "Listen, then choose the correct character.";
   quizFeedback.className = "quiz-feedback";
 
   const incorrectOptions = shuffle(
@@ -415,6 +474,9 @@ function resetAllProgress() {
 }
 
 document.getElementById("reveal-card-button").addEventListener("click", revealAnswer);
+playCardSoundButton.addEventListener("click", playCurrentCardSound);
+
+playQuizSoundButton.addEventListener("click", playCurrentQuizSound);
 
 document.getElementById("previous-card-button").addEventListener("click", () => {
   moveCard(-1);

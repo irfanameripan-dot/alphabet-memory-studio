@@ -94,7 +94,18 @@
           <div class="flashcard-divider"></div>
 
           <p class="flashcard-label">SOUND / NAME</p>
-          <p id="flashcard-answer" class="flashcard-answer">A</p>
+          <div class="flashcard-answer-row">
+  <p id="flashcard-answer" class="flashcard-answer">A</p>
+
+  <button
+    id="play-card-sound-button"
+    class="sound-button"
+    type="button"
+    aria-label="Listen to this character"
+  >
+    🔊 Listen
+  </button>
+</div>
         </article>
 
         <p id="flashcard-tip" class="card-tip">
@@ -128,9 +139,19 @@
 
           <div id="quiz-prompt" class="quiz-prompt">A</div>
 
-          <p id="quiz-feedback" class="quiz-feedback">
-            Choose the correct character.
-          </p>
+          <div id="quiz-prompt" class="quiz-prompt">A</div>
+
+<button
+  id="play-quiz-sound-button"
+  class="sound-button quiz-sound-button"
+  type="button"
+>
+  🔊 Listen
+</button>
+
+<p id="quiz-feedback" class="quiz-feedback">
+  Listen, then choose the correct character.
+</p>
 
           <div id="quiz-options" class="quiz-options"></div>
 

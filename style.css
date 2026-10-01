@@ -520,3 +520,46 @@ p {
     flex-direction: column;
   }
 }
+
+.flashcard-answer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 54px;
+}
+
+.flashcard-answer-row .flashcard-answer {
+  margin: 0;
+}
+
+.sound-button {
+  min-height: 40px;
+  padding: 9px 14px;
+  border: 1px solid #c7d5ff;
+  border-radius: 9px;
+  color: var(--blue);
+  background: var(--blue-soft);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.sound-button:hover {
+  border-color: var(--blue);
+  background: #dfe8ff;
+}
+
+.sound-button:active {
+  transform: scale(0.97);
+}
+
+.quiz-sound-button {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 450px) {
+  .flashcard-answer-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
